@@ -65,8 +65,11 @@
     async function post(data){
       if(!apiReady()) throw new Error('아직 응답 저장 서버가 연결되지 않았습니다.');
       await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams({payload:JSON.stringify(data)})});
-      for(let i=0;i<5;i++){
-        await new Promise(resolve=>setTimeout(resolve,500));
+      // no-cors POST에서는 응답 본문을 읽을 수 없으므로, 같은 /exec URL의
+      // JSONP check 액션으로 Sheets 반영 여부를 확인합니다.
+      const delays=[300,500,800,1200,1600,2000,2000];
+      for(const delay of delays){
+        await new Promise(resolve=>setTimeout(resolve,delay));
         const check=await jsonp({action:'check',code:data.code,stage:data.stage});
         if(check.ok&&check.saved)return;
       }

@@ -27,6 +27,7 @@ function doGet(e) {
   let result;
   try {
     if (action === 'results') result = getResults_();
+    else if (action === 'check') result = checkResponse_(e.parameter.code, e.parameter.stage);
     else result = { ok: true, message: 'survey backend ready' };
   } catch (err) {
     result = { ok: false, error: String(err.message || err) };
@@ -74,6 +75,20 @@ function saveResponse_(data) {
   }
 }
 
+function checkResponse_(codeRaw, stageRaw) {
+  const code = String(codeRaw || '').trim().toUpperCase();
+  const stage = String(stageRaw || '').trim();
+  if (!/^[A-Z0-9]{4,8}$/.test(code)) throw new Error('참여 코드를 확인해 주세요.');
+  if (!['pre', 'post'].includes(stage)) throw new Error('설문 단계를 확인해 주세요.');
+  const rows = getSheet_().getDataRange().getValues();
+  for (let i = 1; i < rows.length; i++) {
+    if (String(rows[i][1] || '').trim().toUpperCase() === code && String(rows[i][2] || '').trim() === stage) {
+      return { ok: true, saved: true };
+    }
+  }
+  return { ok: true, saved: false };
+}
+
 function getResults_() {
   const rows = getSheet_().getDataRange().getValues();
   const byCode = {};
@@ -88,7 +103,7 @@ function getResults_() {
   const paired = all.filter(x => x.pre && x.post);
   const summarize = (items, key) => {
     const votes = { '가능하다': 0, '일부 가능하다': 0, '어렵다': 0 };
-    items.forEach(x => { if (votes[x[key].vote] !== undefined) votes[x[key].vote]++; });
+    items.forEach(x => { const response = x[key]; if (response && votes[response.vote] !== undefined) votes[response.vote]++; });
     return { total: items.filter(x => x[key]).length, votes, comments: items.filter(x => x[key] && x[key].comment).map(x => ({ comment: x[key].comment })) };
   };
   return { ok: true, pre: summarize(all, 'pre'), post: summarize(all, 'post'), paired: paired.length, pairedPre: summarize(paired, 'pre'), pairedPost: summarize(paired, 'post') };
