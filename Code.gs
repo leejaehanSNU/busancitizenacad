@@ -28,6 +28,7 @@ function doGet(e) {
   try {
     if (action === 'results') result = getResults_();
     else if (action === 'check') result = checkResponse_(e.parameter.code, e.parameter.stage);
+    else if (action === 'check') result = checkResponse_(e.parameter.code, e.parameter.stage);
     else result = { ok: true, message: 'survey backend ready' };
   } catch (err) {
     result = { ok: false, error: String(err.message || err) };
