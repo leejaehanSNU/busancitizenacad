@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,557 +7,39 @@
   <title>AI와 도시계획 | 참여 설문</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <style>
-    :root {
-      --navy: #173e68;
-      --blue: #4f91d1;
-      --teal: #168777;
-      --ink: #202b38;
-      --muted: #637386;
-      --line: #d7e1eb;
-      --paper: #f5f8fb;
-      --purple: #7657b0;
-      --coral: #d85b63
-    }
-
-    * {
-      box-sizing: border-box
-    }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      font-family: "Noto Sans KR", system-ui, sans-serif;
-      color: var(--ink)
-    }
-
-    .top {
-      height: 9px;
-      background: linear-gradient(90deg, var(--navy) 0 24%, var(--blue) 24% 62%, #b7d3eb 62%)
-    }
-
-    header {
-      background: #fff;
-      border-bottom: 1px solid var(--line)
-    }
-
-    .head {
-      max-width: 1040px;
-      margin: auto;
-      padding: 19px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px
-    }
-
-    .brand {
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: .02em
-    }
-
-    .badge {
-      font-size: 12px;
-      color: var(--muted);
-      background: #eff4f8;
-      border-radius: 999px;
-      padding: 7px 11px
-    }
-
-    main {
-      max-width: 1040px;
-      margin: 34px auto;
-      padding: 0 20px 48px
-    }
-
-    .hero {
-      margin-bottom: 21px
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      color: var(--teal);
-      text-transform: uppercase;
-      margin: 0 0 7px
-    }
-
-    h1 {
-      font-size: clamp(25px, 4vw, 36px);
-      line-height: 1.25;
-      letter-spacing: -.04em;
-      margin: 0 0 8px;
-      color: #172b40
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.65;
-      margin: 0
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 8px 24px rgba(23, 62, 104, .055);
-      margin: 16px 0
-    }
-
-    .card h2 {
-      margin: 0 0 7px;
-      font-size: 20px;
-      letter-spacing: -.025em
-    }
-
-    .hint {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0 0 18px
-    }
-
-    .field {
-      margin: 19px 0
-    }
-
-    .field label,
-    .field .label {
-      font-size: 14px;
-      font-weight: 700;
-      display: block;
-      margin-bottom: 9px
-    }
-
-    .req {
-      color: var(--coral)
-    }
-
-    .options {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 9px
-    }
-
-    .option {
-      position: relative
-    }
-
-    .option input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none
-    }
-
-    .option span {
-      min-height: 48px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 9px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      background: #fff;
-      transition: .15s
-    }
-
-    .option input:checked+span {
-      border-color: var(--blue);
-      background: #edf6fd;
-      color: var(--navy);
-      box-shadow: inset 0 0 0 1px var(--blue)
-    }
-
-    textarea,
-    input[type=text],
-    input[type=password] {
-      width: 100%;
-      border: 1px solid #c9d6e2;
-      border-radius: 10px;
-      padding: 12px 13px;
-      font: inherit;
-      font-size: 14px;
-      outline: none;
-      background: #fff
-    }
-
-    textarea {
-      min-height: 92px;
-      resize: vertical;
-      line-height: 1.55
-    }
-
-    textarea:focus,
-    input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px #4f91d122
-    }
-
-    .code-row {
-      display: flex;
-      gap: 9px;
-      align-items: center
-    }
-
-    .code-row input {
-      max-width: 220px;
-      letter-spacing: .12em;
-      font-weight: 800;
-      color: var(--navy)
-    }
-
-    .micro {
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.55;
-      margin-top: 7px
-    }
-
-    button,
-    .button {
-      border: 0;
-      border-radius: 10px;
-      background: var(--navy);
-      color: #fff;
-      padding: 12px 18px;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .15s;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px
-    }
-
-    button:hover,
-    .button:hover {
-      background: #22558a;
-      transform: translateY(-1px)
-    }
-
-    button.secondary,
-    .button.secondary {
-      background: #edf3f8;
-      color: var(--navy)
-    }
-
-    button.teal {
-      background: var(--teal)
-    }
-
-    button:disabled {
-      opacity: .55;
-      cursor: wait;
-      transform: none
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 22px
-    }
-
-    .note {
-      padding: 13px 15px;
-      background: #eef6fb;
-      border-left: 3px solid var(--blue);
-      border-radius: 7px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #334b60
-    }
-
-    .status {
-      padding: 15px 17px;
-      border-radius: 11px;
-      background: #f0f7f5;
-      border: 1px solid #cfe7df;
-      color: #245b51;
-      font-size: 14px;
-      line-height: 1.6
-    }
-
-    .status.warn {
-      background: #fff8e9;
-      border-color: #f1dfb0;
-      color: #72561b
-    }
-
-    .status.error {
-      background: #fff0f0;
-      border-color: #f2cece;
-      color: #913c42
-    }
-
-    .two {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px
-    }
-
-    .qr-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px
-    }
-
-    .qr-card {
-      text-align: center
-    }
-
-    .qr-card h2 {
-      font-size: 17px
-    }
-
-    .qr {
-      width: 176px;
-      height: 176px;
-      margin: 12px auto;
-      display: grid;
-      place-items: center
-    }
-
-    .qr canvas,
-    .qr img {
-      max-width: 100%;
-      height: auto !important
-    }
-
-    .url {
-      font-size: 12px;
-      color: var(--muted);
-      word-break: break-all;
-      line-height: 1.5
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 16px 0
-    }
-
-    .stat {
-      border-radius: 12px;
-      background: #f4f7fa;
-      padding: 14px;
-      text-align: center
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 25px;
-      color: var(--navy)
-    }
-
-    .stat span {
-      font-size: 12px;
-      color: var(--muted)
-    }
-
-    .compare {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px
-    }
-
-    .compare-col {
-      background: #f7f9fc;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 15px
-    }
-
-    .compare-col h3 {
-      font-size: 14px;
-      margin: 0 0 13px
-    }
-
-    .barline {
-      margin: 11px 0
-    }
-
-    .barhead {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      margin-bottom: 5px
-    }
-
-    .track {
-      height: 9px;
-      background: #e5ebf1;
-      border-radius: 99px;
-      overflow: hidden
-    }
-
-    .fill {
-      height: 100%;
-      background: var(--blue);
-      border-radius: 99px
-    }
-
-    .fill.after {
-      background: var(--teal)
-    }
-
-    .cloud {
-      min-height: 150px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      align-content: center;
-      flex-wrap: wrap;
-      gap: 6px 12px;
-      padding: 18px;
-      background: #f7f9fc;
-      border-radius: 12px
-    }
-
-    .word {
-      font-weight: 800;
-      line-height: 1.2
-    }
-
-    .word.pre {
-      color: var(--purple)
-    }
-
-    .word.post {
-      color: var(--teal)
-    }
-
-    .empty {
-      color: var(--muted);
-      font-size: 13px
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin: 26px 0 11px
-    }
-
-    .section-title h2 {
-      margin: 0;
-      font-size: 19px
-    }
-
-    .pill {
-      font-size: 11px;
-      border-radius: 999px;
-      background: #eaf2f8;
-      color: var(--navy);
-      padding: 5px 8px;
-      font-weight: 700
-    }
-
-    footer {
-      text-align: center;
-      color: #8793a0;
-      font-size: 11px;
-      padding: 0 12px 26px
-    }
-
-    .hidden {
-      display: none !important
-    }
-
-    .center {
-      text-align: center
-    }
-
-    .loader {
-      width: 20px;
-      height: 20px;
-      border: 2px solid #dce7ef;
-      border-top-color: var(--blue);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-      margin: 12px auto
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg)
-      }
-    }
-
-    @media(max-width:700px) {
-      main {
-        margin-top: 25px;
-        padding: 0 14px 32px
-      }
-
-      .head {
-        padding: 15px
-      }
-
-      .card {
-        padding: 19px
-      }
-
-      .options {
-        grid-template-columns: 1fr
-      }
-
-      .two,
-      .qr-grid,
-      .compare {
-        grid-template-columns: 1fr
-      }
-
-      .qr-card {
-        padding: 20px 14px
-      }
-
-      .stats {
-        gap: 6px
-      }
-
-      .stat {
-        padding: 11px 6px
-      }
-
-      .stat strong {
-        font-size: 21px
-      }
-    }
+    :root{--navy:#173e68;--blue:#4f91d1;--teal:#168777;--ink:#202b38;--muted:#637386;--line:#d7e1eb;--paper:#f5f8fb;--purple:#7657b0;--coral:#d85b63}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);font-family:"Noto Sans KR",system-ui,sans-serif;color:var(--ink)}
+    .top{height:9px;background:linear-gradient(90deg,var(--navy) 0 24%,var(--blue) 24% 62%,#b7d3eb 62%)}
+    header{background:#fff;border-bottom:1px solid var(--line)} .head{max-width:1040px;margin:auto;padding:19px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{font-size:14px;font-weight:800;color:var(--navy);letter-spacing:.02em}.badge{font-size:12px;color:var(--muted);background:#eff4f8;border-radius:999px;padding:7px 11px}
+    main{max-width:1040px;margin:34px auto;padding:0 20px 48px}.hero{margin-bottom:21px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--teal);text-transform:uppercase;margin:0 0 7px}
+    h1{font-size:clamp(25px,4vw,36px);line-height:1.25;letter-spacing:-.04em;margin:0 0 8px;color:#172b40} .lead{color:var(--muted);font-size:15px;line-height:1.65;margin:0}
+    .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 8px 24px rgba(23,62,104,.055);margin:16px 0}
+    .card h2{margin:0 0 7px;font-size:20px;letter-spacing:-.025em}.hint{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 18px}
+    .field{margin:19px 0}.field label,.field .label{font-size:14px;font-weight:700;display:block;margin-bottom:9px}.req{color:var(--coral)}
+    .options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.option{position:relative}.option input{position:absolute;opacity:0;pointer-events:none}.option span{min-height:48px;border:1px solid var(--line);border-radius:10px;display:flex;justify-content:center;align-items:center;text-align:center;padding:9px;font-size:14px;font-weight:600;cursor:pointer;background:#fff;transition:.15s}.option input:checked+span{border-color:var(--blue);background:#edf6fd;color:var(--navy);box-shadow:inset 0 0 0 1px var(--blue)}
+    textarea,input[type=text],input[type=password]{width:100%;border:1px solid #c9d6e2;border-radius:10px;padding:12px 13px;font:inherit;font-size:14px;outline:none;background:#fff}textarea{min-height:92px;resize:vertical;line-height:1.55}textarea:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #4f91d122}
+    .code-row{display:flex;gap:9px;align-items:center}.code-row input{max-width:220px;letter-spacing:.12em;font-weight:800;color:var(--navy)}.micro{font-size:12px;color:var(--muted);line-height:1.55;margin-top:7px}
+    button,.button{border:0;border-radius:10px;background:var(--navy);color:#fff;padding:12px 18px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:.15s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}button:hover,.button:hover{background:#22558a;transform:translateY(-1px)}button.secondary,.button.secondary{background:#edf3f8;color:var(--navy)}button.teal{background:var(--teal)}button:disabled{opacity:.55;cursor:wait;transform:none}
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:22px}.note{padding:13px 15px;background:#eef6fb;border-left:3px solid var(--blue);border-radius:7px;font-size:13px;line-height:1.6;color:#334b60}
+    .status{padding:15px 17px;border-radius:11px;background:#f0f7f5;border:1px solid #cfe7df;color:#245b51;font-size:14px;line-height:1.6}.status.warn{background:#fff8e9;border-color:#f1dfb0;color:#72561b}.status.error{background:#fff0f0;border-color:#f2cece;color:#913c42}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.qr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.qr-card{text-align:center}.qr-card h2{font-size:17px}.qr{width:176px;height:176px;margin:12px auto;display:grid;place-items:center}.qr canvas,.qr img{max-width:100%;height:auto!important}.url{font-size:12px;color:var(--muted);word-break:break-all;line-height:1.5}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat{border-radius:12px;background:#f4f7fa;padding:14px;text-align:center}.stat strong{display:block;font-size:25px;color:var(--navy)}.stat span{font-size:12px;color:var(--muted)}
+    .compare{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.compare-col{background:#f7f9fc;border:1px solid var(--line);border-radius:12px;padding:15px}.compare-col h3{font-size:14px;margin:0 0 13px}.barline{margin:11px 0}.barhead{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}.track{height:9px;background:#e5ebf1;border-radius:99px;overflow:hidden}.fill{height:100%;background:var(--blue);border-radius:99px}.fill.after{background:var(--teal)}
+    .cloud{min-height:150px;display:flex;align-items:center;justify-content:center;align-content:center;flex-wrap:wrap;gap:6px 12px;padding:18px;background:#f7f9fc;border-radius:12px}.word{font-weight:800;line-height:1.2}.word.pre{color:var(--purple)}.word.post{color:var(--teal)}.empty{color:var(--muted);font-size:13px}
+    .section-title{display:flex;align-items:center;gap:9px;margin:26px 0 11px}.section-title h2{margin:0;font-size:19px}.pill{font-size:11px;border-radius:999px;background:#eaf2f8;color:var(--navy);padding:5px 8px;font-weight:700}
+    footer{text-align:center;color:#8793a0;font-size:11px;padding:0 12px 26px}.hidden{display:none!important}.center{text-align:center}.loader{width:20px;height:20px;border:2px solid #dce7ef;border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;margin:12px auto}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:700px){main{margin-top:25px;padding:0 14px 32px}.head{padding:15px}.card{padding:19px}.options{grid-template-columns:1fr}.two,.qr-grid,.compare{grid-template-columns:1fr}.qr-card{padding:20px 14px}.stats{gap:6px}.stat{padding:11px 6px}.stat strong{font-size:21px}}
   </style>
 </head>
-
 <body>
-  <div class="top"></div>
-  <header>
-    <div class="head">
-      <div class="brand">도시계획 시민 참여 설문</div>
-      <div class="badge" id="topBadge">참여 설문</div>
-    </div>
-  </header>
-  <main id="app">
-    <div class="loader"></div>
-  </main>
+  <div class="top"></div><header><div class="head"><div class="brand">도시계획 시민 참여 설문</div><div class="badge" id="topBadge">참여 설문</div></div></header>
+  <main id="app"><div class="loader"></div></main>
   <footer>응답은 익명 참여 코드로 연결되며, 전·후 비교와 키워드 시각화에 활용됩니다.</footer>
   <script>
-    // Apps Script 웹 앱 배포 후 URL을 따옴표 안에 붙여 넣으세요.
+    // 학교 계정형 Apps Script 웹 앱 URL도 연결되도록 검사합니다.
     const API_URL = "https://script.google.com/macros/s/AKfycbw-XVH6TjVlhWX41E5hkoqM-2F7Q5HPGSQ9WcMwy_G9-MgDLnsiLeDgnfk-XRPugnFyXg/exec";
     const OPTIONS = ["가능하다", "일부 가능하다", "어렵다"];
     const app = document.getElementById('app');
@@ -568,86 +49,87 @@
     const idKey = 'cityplan_survey_code_v1';
     const getCode = () => {
       let c = localStorage.getItem(idKey);
-      if (!c) { c = Math.random().toString(36).slice(2, 8).toUpperCase(); localStorage.setItem(idKey, c); }
+      if (!c) { c = Math.random().toString(36).slice(2,8).toUpperCase(); localStorage.setItem(idKey,c); }
       return c;
     };
-    const apiReady = () => API_URL.startsWith('https://script.google.com/macros/s/') && API_URL.endsWith('/exec');
-    const h = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    function jsonp(query) {
-      return new Promise((resolve, reject) => {
-        if (!apiReady()) return reject(new Error('백엔드 URL이 아직 설정되지 않았습니다.'));
-        const cb = 'jsonp_' + Math.random().toString(36).slice(2); const script = document.createElement('script');
-        const timer = setTimeout(() => { clean(); reject(new Error('서버 응답이 늦습니다. 다시 시도해 주세요.')); }, 10000);
-        function clean() { clearTimeout(timer); delete window[cb]; script.remove(); }
-        window[cb] = data => { clean(); resolve(data) }; script.onerror = () => { clean(); reject(new Error('응답 서버에 연결하지 못했습니다.')) };
-        script.src = API_URL + '?' + new URLSearchParams({ ...query, callback: cb }).toString(); document.body.appendChild(script);
-      })
+    const apiReady = () => /^https:\/\/script\.google\.com\/(?:macros\/s\/|a\/macros\/[^/]+\/s\/)[^/]+\/exec$/.test(API_URL);
+    const h = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function jsonp(query){return new Promise((resolve,reject)=>{
+      if(!apiReady()) return reject(new Error('백엔드 URL이 아직 설정되지 않았습니다.'));
+      const cb='jsonp_'+Math.random().toString(36).slice(2); const script=document.createElement('script');
+      const timer=setTimeout(()=>{clean();reject(new Error('서버 응답이 늦습니다. 다시 시도해 주세요.'));},10000);
+      function clean(){clearTimeout(timer);delete window[cb];script.remove();}
+      window[cb]=data=>{clean();resolve(data)};script.onerror=()=>{clean();reject(new Error('응답 서버에 연결하지 못했습니다.'))};
+      script.src=API_URL+'?'+new URLSearchParams({...query,callback:cb}).toString();document.body.appendChild(script);
+    })}
+    async function post(data){
+      if(!apiReady()) throw new Error('아직 응답 저장 서버가 연결되지 않았습니다.');
+      await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams({payload:JSON.stringify(data)})});
+      for(let i=0;i<5;i++){
+        await new Promise(resolve=>setTimeout(resolve,500));
+        const check=await jsonp({action:'check',code:data.code,stage:data.stage});
+        if(check.ok&&check.saved)return;
+      }
+      throw new Error('저장 여부를 확인하지 못했습니다. 연결을 확인한 뒤 다시 시도해 주세요.');
     }
-    async function post(data) {
-      if (!apiReady()) throw new Error('아직 응답 저장 서버가 연결되지 않았습니다.');
-      await fetch(API_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: new URLSearchParams({ payload: JSON.stringify(data) }) });
-    }
-    function shell(eyebrow, title, lead, inside) { return `<div class="hero"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${lead}</p></div>${inside}` }
-    function radioOptions(selected = '') { return OPTIONS.map((v, i) => `<label class="option"><input type="radio" name="vote" value="${h(v)}" ${v === selected ? 'checked' : ''} required><span>${h(v)}</span></label>`).join('') }
-    function showForm(which) {
-      const isPre = which === 'pre'; document.getElementById('topBadge').textContent = isPre ? '발표 전 설문' : '발표 후 설문';
-      const saved = JSON.parse(localStorage.getItem('cityplan_done_' + which) || 'null');
-      if (saved) { showDone(which, saved.code); return; }
-      const code = getCode();
-      const prompt = isPre ? '발표를 듣기 전, 현재 생각을 선택해 주세요.' : '발표를 들은 뒤, 현재 생각을 선택해 주세요.';
-      const textareaLabel = isPre ? '그렇게 생각한 이유를 짧게 적어주세요.' : '발표를 듣고 생각이 달라졌다면 그 이유를, 가장 인상 깊었던 내용을 짧게 적어주세요.';
-      app.innerHTML = shell(isPre ? '발표 전 · 사전 응답' : '발표 후 · 사후 응답', 'AI가 도시계획을 대신할 수 있을까?', prompt, `
+    function shell(eyebrow,title,lead,inside){return `<div class="hero"><p class="eyebrow">${eyebrow}</p><h1>${title}</h1><p class="lead">${lead}</p></div>${inside}`}
+    function radioOptions(selected=''){return OPTIONS.map((v,i)=>`<label class="option"><input type="radio" name="vote" value="${h(v)}" ${v===selected?'checked':''} required><span>${h(v)}</span></label>`).join('')}
+    function showForm(which){
+      const isPre=which==='pre';document.getElementById('topBadge').textContent=isPre?'발표 전 설문':'발표 후 설문';
+      const saved=JSON.parse(localStorage.getItem('cityplan_done_'+which)||'null');
+      if(saved){showDone(which,saved.code);return;}
+      const code=getCode();
+      const prompt=isPre?'발표를 듣기 전, 현재 생각을 선택해 주세요.':'발표를 들은 뒤, 현재 생각을 선택해 주세요.';
+      const textareaLabel=isPre?'그렇게 생각한 이유를 짧게 적어주세요.':'발표를 듣고 생각이 달라졌다면 그 이유를, 가장 인상 깊었던 내용을 짧게 적어주세요.';
+      app.innerHTML=shell(isPre?'발표 전 · 사전 응답':'발표 후 · 사후 응답','AI가 도시계획을 대신할 수 있을까?',prompt,`
         <form class="card" id="surveyForm">
-          <div class="field"><span class="label">${h(isPre ? '현재 생각' : '발표 후 생각')} <span class="req">*</span></span><div class="options">${radioOptions()}</div></div>
+          <div class="field"><span class="label">${h(isPre?'현재 생각':'발표 후 생각')} <span class="req">*</span></span><div class="options">${radioOptions()}</div></div>
           <div class="field"><label for="comment">${h(textareaLabel)}</label><textarea id="comment" maxlength="240" placeholder="짧은 문장이나 핵심어로 입력해 주세요. (최대 240자)"></textarea><div class="micro">응답은 익명으로 저장되며, 여러 응답에서 공통 키워드를 모아 시각화합니다.</div></div>
           <div class="field"><label for="code">익명 참여 코드 <span class="req">*</span></label><div class="code-row"><input id="code" type="text" maxlength="8" value="${h(code)}" autocomplete="off" required><button type="button" class="secondary" id="newCode">새 코드</button></div><div class="micro">발표 전·후 응답을 짝지어 비교합니다. 같은 기기·브라우저를 사용하면 자동으로 유지됩니다. 다른 기기라면 발표 후 설문에서 이 코드를 입력해 주세요.</div></div>
           <div class="note">이 설문은 연구·발표 내용을 바탕으로 한 익명 의견 수집입니다. 이름이나 연락처는 입력하지 마세요.</div>
           <div class="actions"><button type="submit" id="submitBtn">응답 저장</button><span class="micro" id="saveMessage" aria-live="polite"></span></div>
         </form>`);
-      document.getElementById('newCode').onclick = () => { const c = Math.random().toString(36).slice(2, 8).toUpperCase(); localStorage.setItem(idKey, c); document.getElementById('code').value = c };
-      document.getElementById('surveyForm').onsubmit = async e => {
-        e.preventDefault(); const btn = document.getElementById('submitBtn'); btn.disabled = true; btn.textContent = '저장 중…';
-        const data = { action: 'submit', stage: which, code: document.getElementById('code').value.trim().toUpperCase(), vote: new FormData(e.currentTarget).get('vote'), comment: document.getElementById('comment').value.trim() };
-        if (!data.code) { btn.disabled = false; btn.textContent = '응답 저장'; return }
-        try { await post(data); localStorage.setItem(idKey, data.code); localStorage.setItem('cityplan_done_' + which, JSON.stringify({ code: data.code, at: Date.now() })); showDone(which, data.code) } catch (err) { btn.disabled = false; btn.textContent = '다시 저장'; document.getElementById('saveMessage').textContent = err.message }
+      document.getElementById('newCode').onclick=()=>{const c=Math.random().toString(36).slice(2,8).toUpperCase();localStorage.setItem(idKey,c);document.getElementById('code').value=c};
+      document.getElementById('surveyForm').onsubmit=async e=>{
+        e.preventDefault();const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='저장 중…';
+        const data={action:'submit',stage:which,code:document.getElementById('code').value.trim().toUpperCase(),vote:new FormData(e.currentTarget).get('vote'),comment:document.getElementById('comment').value.trim()};
+        if(!data.code){btn.disabled=false;btn.textContent='응답 저장';return}
+        try{await post(data);localStorage.setItem(idKey,data.code);localStorage.setItem('cityplan_done_'+which,JSON.stringify({code:data.code,at:Date.now()}));showDone(which,data.code)}catch(err){btn.disabled=false;btn.textContent='다시 저장';document.getElementById('saveMessage').textContent=err.message}
       };
     }
-    function showDone(which, code) {
-      const isPre = which === 'pre'; app.innerHTML = shell(isPre ? '발표 전 응답 저장 완료' : '발표 후 응답 저장 완료', isPre ? '응답을 저장했어요.' : '참여해 주셔서 감사합니다.', isPre ? '발표 후 링크에서 같은 참여 코드로 다시 응답해 주세요.' : '응답을 저장했습니다. 이제 발표 전·후 결과를 함께 확인할 수 있습니다.', `
-      <section class="card center"><div style="font-size:44px;margin-bottom:8px">${isPre ? '✓' : '✦'}</div><h2>${isPre ? '발표 후 설문에서도 같은 코드 사용' : '전·후 응답 연결 완료'}</h2><p class="hint">익명 참여 코드</p><div style="font-size:26px;font-weight:800;color:var(--navy);letter-spacing:.16em">${h(code)}</div><p class="micro">${isPre ? '같은 기기에서는 코드가 자동으로 유지됩니다. 다른 기기로 발표 후 설문에 접속하면 이 코드를 입력해 주세요.' : '응답 결과는 발표자가 결과 화면에서 확인합니다.'}</p></section>`)
-    }
-    function showHost() {
-      document.getElementById('topBadge').textContent = '호스트 도구';
-      const base = location.href.split('?')[0]; const pre = base + '?stage=pre'; const post = base + '?stage=post'; const results = base + '?view=results';
-      app.innerHTML = shell('진행자 화면', '설문 링크와 결과', '발표 전·후 QR을 각각 준비하고, 마지막에 전·후 결과를 함께 공개하세요.', `
-        ${!apiReady() ? '<div class="status warn">Google Apps Script 웹 앱 URL을 index.html의 <code>API_URL</code>에 입력한 뒤 배포해야 응답 저장과 결과 집계가 작동합니다.</div>' : ''}
+    function showDone(which,code){const isPre=which==='pre';app.innerHTML=shell(isPre?'발표 전 응답 저장 완료':'발표 후 응답 저장 완료',isPre?'응답을 저장했어요.':'참여해 주셔서 감사합니다.',isPre?'발표 후 링크에서 같은 참여 코드로 다시 응답해 주세요.':'응답을 저장했습니다. 이제 발표 전·후 결과를 함께 확인할 수 있습니다.',`
+      <section class="card center"><div style="font-size:44px;margin-bottom:8px">${isPre?'✓':'✦'}</div><h2>${isPre?'발표 후 설문에서도 같은 코드 사용':'전·후 응답 연결 완료'}</h2><p class="hint">익명 참여 코드</p><div style="font-size:26px;font-weight:800;color:var(--navy);letter-spacing:.16em">${h(code)}</div><p class="micro">${isPre?'같은 기기에서는 코드가 자동으로 유지됩니다. 다른 기기로 발표 후 설문에 접속하면 이 코드를 입력해 주세요.':'응답 결과는 발표자가 결과 화면에서 확인합니다.'}</p></section>`)}
+    function showHost(){
+      document.getElementById('topBadge').textContent='호스트 도구';
+      const base=location.href.split('?')[0];const pre=base+'?stage=pre';const post=base+'?stage=post';const results=base+'?view=results';
+      app.innerHTML=shell('진행자 화면','설문 링크와 결과','발표 전·후 QR을 각각 준비하고, 마지막에 전·후 결과를 함께 공개하세요.',`
+        ${!apiReady()?'<div class="status warn">Google Apps Script 웹 앱 URL을 index.html의 <code>API_URL</code>에 입력한 뒤 배포해야 응답 저장과 결과 집계가 작동합니다.</div>':''}
         <div class="qr-grid"><section class="card qr-card"><span class="pill">발표 시작 전</span><h2>사전 설문 QR</h2><div class="qr" id="preQR"></div><p class="url">${h(pre)}</p><div class="actions" style="justify-content:center"><button class="secondary copy" data-copy="${h(pre)}">링크 복사</button></div></section>
         <section class="card qr-card"><span class="pill">발표 종료 후</span><h2>사후 설문 QR</h2><div class="qr" id="postQR"></div><p class="url">${h(post)}</p><div class="actions" style="justify-content:center"><button class="secondary copy" data-copy="${h(post)}">링크 복사</button></div></section></div>
         <section class="card"><h2>진행 순서</h2><ol class="hint" style="padding-left:20px"><li>첫 QR을 PPT 시작 화면에 넣고 발표 전 응답을 받습니다.</li><li>별도 PPT로 발표를 진행합니다.</li><li>마지막에 두 번째 QR 또는 사후 설문 링크를 안내합니다.</li><li>응답 저장 후 결과 화면에서 전·후 투표와 키워드 구름을 확인합니다.</li></ol><div class="actions"><a class="button" href="${h(results)}">결과 화면 열기</a><button class="secondary copy" data-copy="${h(results)}">결과 링크 복사</button></div></section>`);
-      if (window.QRCode) { new QRCode(document.getElementById('preQR'), { text: pre, width: 176, height: 176, colorDark: '#173e68', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }); new QRCode(document.getElementById('postQR'), { text: post, width: 176, height: 176, colorDark: '#168777', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M }) } else { document.querySelectorAll('.qr').forEach(q => q.innerHTML = '<span class="micro">QR 생성 라이브러리 로딩 실패</span>') }
-      document.querySelectorAll('.copy').forEach(b => b.onclick = async () => { await navigator.clipboard.writeText(b.dataset.copy); const old = b.textContent; b.textContent = '복사됨'; setTimeout(() => b.textContent = old, 1300) });
+      if(window.QRCode){new QRCode(document.getElementById('preQR'),{text:pre,width:176,height:176,colorDark:'#173e68',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});new QRCode(document.getElementById('postQR'),{text:post,width:176,height:176,colorDark:'#168777',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}else{document.querySelectorAll('.qr').forEach(q=>q.innerHTML='<span class="micro">QR 생성 라이브러리 로딩 실패</span>')}
+      document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{await navigator.clipboard.writeText(b.dataset.copy);const old=b.textContent;b.textContent='복사됨';setTimeout(()=>b.textContent=old,1300)});
     }
-    const STOP = new Set('그리고 그러나 또한 매우 조금 정말 가장 대해 통해 위한 관련 있는 있는지 합니다 합니다는 입니다 것이다 수 있다 없다 하는 하는것 이다 것으로 이후 이전 생각 응답 발표 내용 도시계획 도시 AI'.split(' '));
-    function terms(text) { return String(text || '').toLowerCase().replace(/https?:\/\/\S+/g, ' ').replace(/[.,!?;:()[\]{}<>"'“”‘’…·/\\|~`@#$%^&*_+=-]/g, ' ').split(/\s+/).map(w => { let t = w; for (const suf of ['으로', '에서', '에게', '부터', '까지', '처럼', '보다', '이라', '라고', '이나', '라도', '에는', '으로는', '은', '는', '이', '가', '을', '를', '의', '에', '와', '과', '도', '만', '로', '랑']) if (t.length > suf.length + 1 && t.endsWith(suf)) { t = t.slice(0, -suf.length); break } return t }).filter(w => w.length > 1 && !STOP.has(w) && !/^\d+$/.test(w)) }
-    function cloudHTML(list, which) { const freq = {}; list.forEach(x => terms(x.comment).forEach(w => freq[w] = (freq[w] || 0) + 1)); const arr = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 32); if (!arr.length) return '<span class="empty">아직 표시할 응답이 없습니다.</span>'; const max = arr[0][1], min = arr[arr.length - 1][1]; return arr.map(([w, n]) => `<span class="word ${which}" style="font-size:${Math.round(14 + (n - min) / (max - min || 1) * 22)}px;opacity:${.72 + (n / max) * .28}" title="${n}회">${h(w)}</span>`).join('') }
-    function barHTML(count, total, after) { const p = total ? count / total * 100 : 0; return `<div class="barline"><div class="barhead"><span>${h(OPTIONS[count._i] || '')}</span><strong>${count.n}명 · ${p.toFixed(0)}%</strong></div><div class="track"><div class="fill ${after ? 'after' : ''}" style="width:${p}%"></div></div></div>` }
-    async function resultsOnce() { const d = await jsonp({ action: 'results' }); if (!d.ok) throw new Error(d.error || '결과를 불러오지 못했습니다.'); renderResults(d) }
-    function renderResults(d) {
-      document.getElementById('topBadge').textContent = '실시간 결과';
-      const rows = [d.pairedPre, d.pairedPost].map(k => OPTIONS.map((o, i) => ({ _i: i, n: k.votes[o] || 0 }))); const paired = d.paired || 0;
-      const cols = OPTIONS.map((o, i) => `<div class="compare-col"><h3>${h(o)}</h3><div class="barhead"><span>발표 전</span><strong>${rows[0][i].n}명</strong></div><div class="track"><div class="fill" style="width:${paired ? rows[0][i].n / paired * 100 : 0}%"></div></div><div class="barhead" style="margin-top:11px"><span>발표 후</span><strong>${rows[1][i].n}명</strong></div><div class="track"><div class="fill after" style="width:${paired ? rows[1][i].n / paired * 100 : 0}%"></div></div></div>`).join('');
-      app.innerHTML = shell('발표 후 · 자동 집계', '응답 결과', '같은 익명 참여 코드로 연결된 응답을 기준으로 발표 전·후 투표를 비교합니다. 결과는 새 응답이 들어오면 자동으로 갱신됩니다.', `
+    const STOP=new Set('그리고 그러나 또한 매우 조금 정말 가장 대해 통해 위한 관련 있는 있는지 합니다 합니다는 입니다 것이다 수 있다 없다 하는 하는것 이다 것으로 이후 이전 생각 응답 발표 내용 도시계획 도시 AI'.split(' '));
+    function terms(text){return String(text||'').toLowerCase().replace(/https?:\/\/\S+/g,' ').replace(/[.,!?;:()[\]{}<>"'“”‘’…·/\\|~`@#$%^&*_+=-]/g,' ').split(/\s+/).map(w=>{let t=w;for(const suf of ['으로','에서','에게','부터','까지','처럼','보다','이라','라고','이나','라도','에는','으로는','은','는','이','가','을','를','의','에','와','과','도','만','로','랑'])if(t.length>suf.length+1&&t.endsWith(suf)){t=t.slice(0,-suf.length);break}return t}).filter(w=>w.length>1&&!STOP.has(w)&&!/^\d+$/.test(w))}
+    function cloudHTML(list,which){const freq={};list.forEach(x=>terms(x.comment).forEach(w=>freq[w]=(freq[w]||0)+1));const arr=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,32);if(!arr.length)return '<span class="empty">아직 표시할 응답이 없습니다.</span>';const max=arr[0][1],min=arr[arr.length-1][1];return arr.map(([w,n])=>`<span class="word ${which}" style="font-size:${Math.round(14+(n-min)/(max-min||1)*22)}px;opacity:${.72+(n/max)*.28}" title="${n}회">${h(w)}</span>`).join('')}
+    function barHTML(count,total,after){const p=total?count/total*100:0;return `<div class="barline"><div class="barhead"><span>${h(OPTIONS[count._i]||'')}</span><strong>${count.n}명 · ${p.toFixed(0)}%</strong></div><div class="track"><div class="fill ${after?'after':''}" style="width:${p}%"></div></div></div>`}
+    async function resultsOnce(){const d=await jsonp({action:'results'});if(!d.ok)throw new Error(d.error||'결과를 불러오지 못했습니다.');renderResults(d)}
+    function renderResults(d){
+      document.getElementById('topBadge').textContent='실시간 결과';
+      const rows=[d.pairedPre,d.pairedPost].map(k=>OPTIONS.map((o,i)=>({_i:i,n:k.votes[o]||0})));const paired=d.paired||0;
+      const cols=OPTIONS.map((o,i)=>`<div class="compare-col"><h3>${h(o)}</h3><div class="barhead"><span>발표 전</span><strong>${rows[0][i].n}명</strong></div><div class="track"><div class="fill" style="width:${paired?rows[0][i].n/paired*100:0}%"></div></div><div class="barhead" style="margin-top:11px"><span>발표 후</span><strong>${rows[1][i].n}명</strong></div><div class="track"><div class="fill after" style="width:${paired?rows[1][i].n/paired*100:0}%"></div></div></div>`).join('');
+      app.innerHTML=shell('발표 후 · 자동 집계','응답 결과','같은 익명 참여 코드로 연결된 응답을 기준으로 발표 전·후 투표를 비교합니다. 결과는 새 응답이 들어오면 자동으로 갱신됩니다.',`
         <div class="stats"><div class="stat"><strong>${d.pre.total}</strong><span>발표 전 응답</span></div><div class="stat"><strong>${d.post.total}</strong><span>발표 후 응답</span></div><div class="stat"><strong>${paired}</strong><span>전·후 연결 응답</span></div></div>
         <div class="section-title"><h2>AI가 도시계획을 대신할 수 있을까?</h2><span class="pill">연결 응답 ${paired}명 기준</span></div>
         <div class="compare">${cols}</div>
-        <div class="two" style="margin-top:24px"><section><div class="section-title"><h2>발표 전 키워드</h2></div><div class="cloud">${cloudHTML(d.pre.comments, 'pre')}</div></section><section><div class="section-title"><h2>발표 후 감상 키워드</h2></div><div class="cloud">${cloudHTML(d.post.comments, 'post')}</div></section></div>
+        <div class="two" style="margin-top:24px"><section><div class="section-title"><h2>발표 전 키워드</h2></div><div class="cloud">${cloudHTML(d.pre.comments,'pre')}</div></section><section><div class="section-title"><h2>발표 후 감상 키워드</h2></div><div class="cloud">${cloudHTML(d.post.comments,'post')}</div></section></div>
         <p class="micro">키워드 구름은 자유응답의 단어 빈도를 자동 집계한 결과입니다. 한국어 형태소 분석 없이 띄어쓰기와 기본 조사 제거를 적용하므로 표현이 일부 나뉘거나 합쳐질 수 있습니다.</p>
         <div class="actions"><button class="secondary" id="refresh">지금 새로고침</button><span class="micro" id="updated">자동 갱신 중 · 5초 간격</span></div>`);
-      document.getElementById('refresh').onclick = resultsOnce;
+      document.getElementById('refresh').onclick=resultsOnce;
     }
-    async function startResults() { document.getElementById('topBadge').textContent = '실시간 결과'; app.innerHTML = shell('결과 집계 중', '응답 결과를 불러오는 중입니다.', '잠시만 기다려 주세요.', '<div class="card"><div class="loader"></div></div>'); await resultsOnce(); setInterval(() => resultsOnce().catch(() => { }), 5000) }
-    if (view === 'host') showHost(); else if (view === 'results') startResults().catch(e => app.innerHTML = shell('연결 확인 필요', '결과 화면을 열 수 없습니다.', h(e.message), '<div class="status warn">Apps Script 배포 URL과 권한 설정을 확인해 주세요.</div>')); else if (stage === 'pre' || stage === 'post') showForm(stage); else app.innerHTML = shell('AI와 도시계획', '설문 링크를 선택해 주세요.', '호스트가 안내한 발표 전 또는 발표 후 링크로 접속해 주세요.', '<div class="actions"><a class="button" href="?stage=pre">발표 전 설문</a><a class="button teal" href="?stage=post">발표 후 설문</a></div>');
+    async function startResults(){document.getElementById('topBadge').textContent='실시간 결과';app.innerHTML=shell('결과 집계 중','응답 결과를 불러오는 중입니다.','잠시만 기다려 주세요.','<div class="card"><div class="loader"></div></div>');await resultsOnce();setInterval(()=>resultsOnce().catch(()=>{}),5000)}
+    if(view==='host')showHost();else if(view==='results')startResults().catch(e=>app.innerHTML=shell('연결 확인 필요','결과 화면을 열 수 없습니다.',h(e.message),'<div class="status warn">Apps Script 배포 URL과 권한 설정을 확인해 주세요.</div>'));else if(stage==='pre'||stage==='post')showForm(stage);else app.innerHTML=shell('AI와 도시계획','설문 링크를 선택해 주세요.','호스트가 안내한 발표 전 또는 발표 후 링크로 접속해 주세요.','<div class="actions"><a class="button" href="?stage=pre">발표 전 설문</a><a class="button teal" href="?stage=post">발표 후 설문</a></div>');
   </script>
 </body>
-
 </html>
