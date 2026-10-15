@@ -80,7 +80,7 @@
     function showForm(which){
       const isPre=which==='pre';document.getElementById('topBadge').textContent=isPre?'발표 전 설문':'발표 후 설문';
       const saved=JSON.parse(localStorage.getItem('cityplan_done_'+which)||'null');
-      if(saved){showDone(which,saved.code);return;}
+      if(saved){if(which==='post'){location.href='?view=results';return;}showDone(which,saved.code);return;}
       const code=getCode();
       const prompt=isPre?'발표를 듣기 전, 현재 생각을 선택해 주세요.':'발표를 들은 뒤, 현재 생각을 선택해 주세요.';
       const textareaLabel=isPre?'그렇게 생각한 이유를 짧게 적어주세요.':'발표를 듣고 생각이 달라졌다면 그 이유를, 가장 인상 깊었던 내용을 짧게 적어주세요.';
@@ -97,7 +97,7 @@
         e.preventDefault();const btn=document.getElementById('submitBtn');btn.disabled=true;btn.textContent='저장 중…';
         const data={action:'submit',stage:which,code:document.getElementById('code').value.trim().toUpperCase(),vote:new FormData(e.currentTarget).get('vote'),comment:document.getElementById('comment').value.trim()};
         if(!data.code){btn.disabled=false;btn.textContent='응답 저장';return}
-        try{await post(data);localStorage.setItem(idKey,data.code);localStorage.setItem('cityplan_done_'+which,JSON.stringify({code:data.code,at:Date.now()}));showDone(which,data.code)}catch(err){btn.disabled=false;btn.textContent='다시 저장';document.getElementById('saveMessage').textContent=err.message}
+        try{await post(data);localStorage.setItem(idKey,data.code);localStorage.setItem('cityplan_done_'+which,JSON.stringify({code:data.code,at:Date.now()}));if(which==='post'){location.href='?view=results';return;}showDone(which,data.code)}catch(err){btn.disabled=false;btn.textContent='다시 저장';document.getElementById('saveMessage').textContent=err.message}
       };
     }
     function showDone(which,code){const isPre=which==='pre';app.innerHTML=shell(isPre?'발표 전 응답 저장 완료':'발표 후 응답 저장 완료',isPre?'응답을 저장했어요.':'참여해 주셔서 감사합니다.',isPre?'발표 후 링크에서 같은 참여 코드로 다시 응답해 주세요.':'응답을 저장했습니다. 이제 발표 전·후 결과를 함께 확인할 수 있습니다.',`
